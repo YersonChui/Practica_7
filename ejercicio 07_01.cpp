@@ -1,3 +1,8 @@
+// Fecha creaci√≥n: 23/11/2023
+// Fecha modificaci√≥n: 23/11/2023
+// N√∫mero de ejericio: 1
+// Problema planteado: Tabla de pocisiones de la LIgaBoliviana
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -15,7 +20,7 @@ struct structEquiposLPFB {
     int partidosPerdidos;
     int golesFavor;
     int golesContra;
-    int diferenciaGoles; // Se calcular· como golesFavor - golesContra
+    int diferenciaGoles; // Se calcular√° como golesFavor - golesContra
     int puntos;
 };
 
@@ -38,18 +43,18 @@ int main() {
     setlocale(LC_ALL, "");
     int opcion;
     do {
-        cout << "Men˙ de opciones:\n";
+        cout << "Men√∫ de opciones:\n";
         cout << "1. Ingreso de datos de los equipos de la LPFB.\n";
         cout << "2. Ingreso de los resultados de los partidos.\n";
         cout << "3. Reporte de la tabla de posiciones.\n";
         cout << "4. Salir.\n";
-        cout << "Ingrese su opciÛn: ";
+        cout << "Ingrese su opci√≥n: ";
         cin >> opcion;
 
         if (cin.fail()) {
             cin.clear();
             cin.ignore();
-            cout << "OpciÛn no v·lida. Por favor intente de nuevo.\n";
+            cout << "Opci√≥n no v√°lida. Por favor intente de nuevo.\n";
             continue;
         }
 
@@ -67,7 +72,7 @@ int main() {
                 cout << "Saliendo del programa..." << endl;
                 break;
             default:
-                cout << "OpciÛn no v·lida. Por favor intente de nuevo.\n";
+                cout << "Opci√≥n no v√°lida. Por favor intente de nuevo.\n";
         }
     } while (opcion != 4);
 
@@ -85,7 +90,7 @@ bool existeEquipo(const char* nombreEquipo, structEquiposLPFB &equipoOut) {
     while (archivo.read((char*)&equipo, sizeof(structEquiposLPFB))) {
         if (strcmp(equipo.nombreEquipo, nombreEquipo) == 0) {
             archivo.close();
-            equipoOut = equipo; // Copia la informaciÛn del equipo encontrado
+            equipoOut = equipo; // Copia la informaci√≥n del equipo encontrado
             return true;
         }
     }
@@ -109,7 +114,7 @@ void ingresarDatosEquipo() {
     cin.getline(equipo.colorCamiseta, 50);
     cout << "Ingrese el departamento: ";
     cin.getline(equipo.departamento, 30);
-    cout << "Ingrese el aÒo de creaciÛn: ";
+    cout << "Ingrese el a√±o de creaci√≥n: ";
     cin >> equipo.anioCreacion;
     cin.ignore();
     equipo.partidosJugados = 0;
@@ -126,7 +131,7 @@ void ingresarDatosEquipo() {
     archivo.write((char*)&equipo, sizeof(structEquiposLPFB));
     archivo.close();
 
-    cout << "Equipo ingresado con Èxito.\n";
+    cout << "Equipo ingresado con √©xito.\n";
 }
 void ingresarResultadoPartido() {
     char continuar;
@@ -151,7 +156,7 @@ void ingresarResultadoPartido() {
 
         cout << "Ingrese los goles del equipo local: ";
         cin >> resultado.golesEquipoLocal;
-        cin.ignore(); // Limpia la entrada despuÈs de leer un n˙mero
+        cin.ignore(); // Limpia la entrada despu√©s de leer un n√∫mero
 
         cout << "Ingrese los goles del equipo visitante: ";
         cin >> resultado.golesEquipoVisitante;
@@ -176,13 +181,13 @@ void ingresarResultadoPartido() {
 
         // para el visitante
         actualizarEstadisticasEquipo(resultado.nombreEquipoVisitante, resultado.golesEquipoVisitante, resultado.golesEquipoLocal, visitanteGanador, empate);
-        }while (continuar == 'S' || continuar == 's'); // Aseg˙rate de que esta lÌnea est· presente
+        }while (continuar == 'S' || continuar == 's'); // Aseg√∫rate de que esta l√≠nea est√° presente
 }
 
 void actualizarEstadisticasEquipo(const char* nombreEquipo, int golesFavor, int golesContra, bool equipoGanador, bool empate) {
     fstream archivoEquipos("EquiposLPFB.bin", ios::in | ios::out | ios::binary);
     if (!archivoEquipos) {
-        cout << "No se pudo abrir el archivo de equipos para actualizar las estadÌsticas.\n";
+        cout << "No se pudo abrir el archivo de equipos para actualizar las estad√≠sticas.\n";
         return;
     }
 
@@ -235,7 +240,7 @@ void ordenarPorPuntos(structEquiposLPFB* equipos, int numEquipos) {
 void mostrarTablaPosiciones() {
     ifstream archivo("EquiposLPFB.bin", ios::binary);
     if (!archivo) {
-        cout << "No se pudo abrir el archivo o todavÌa no hay equipos registrados.\n";
+        cout << "No se pudo abrir el archivo o todav√≠a no hay equipos registrados.\n";
         return;
     }
 
